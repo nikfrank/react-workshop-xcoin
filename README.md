@@ -2,6 +2,8 @@
 
 in 4 quick steps, we'll go from nothing to a cryptocurrency converter widget online!
 
+you can see a running example [here](https://nik-xcoin.herokuapp.com)
+
 google ```npm``` and ```create-react-app``` to get the prerequisites
 
 
