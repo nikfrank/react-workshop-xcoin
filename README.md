@@ -277,7 +277,7 @@ We'll be rendering this data into a chart in the next step. For now let's just s
 ```js
 //...
 
-state = {
+  state = {
     fromCoin: '',
     toCoin: '',
     historicalRates: [],
