@@ -364,7 +364,7 @@ import RatesChart from './RatesChart';
 //...
 ```
 
-so now we're ready to pass data to our RatesChart component, so we can use a recharts LineChart there.
+Now we're ready to pass data to our RatesChart component, so we can use a recharts LineChart there.
 
 In Step 2, we saved our exchange rate data in ```this.state.historicalRates``` once we got it from the API
 
