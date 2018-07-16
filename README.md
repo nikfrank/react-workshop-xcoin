@@ -424,7 +424,9 @@ and each ```<Line>``` reads a different dataKey to make a line
 
 The only thing that's weird is that our x-axis is displaying Unix epoch times (which users won't understand... I've tried)
 
-let's look up in the [recharts XAxis component's API](http://recharts.org/en-US/api/XAxis) to find out how format our tick strings
+let's look up in the [recharts XAxis component's API](http://recharts.org) to find out how format our tick strings
+
+... click api then XAxis on the menu (sorry, deeplinking doesn't work on the recharts docs site)
 
 
 ...
