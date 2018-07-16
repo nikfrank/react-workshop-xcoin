@@ -469,8 +469,59 @@ we'll want to only render the RatesChart once ```this.state.historicalRates``` h
 
 very nice!
 
-Now go and be creative! Make a dropdown for selecting the timespan on the chart (currently our API call asks for 60 days of data).. or whatever you want.
+Now go and be creative! Make a dropdown for selecting the timespan on the chart (currently our API call asks for 60 days of data).. or whatever you want (the Legend still renders the epoch seconds... see if you can figure out how to fix that!)
 
 
 
 ## step 4, publish to the web
+
+If you've made an account on heroku.com, we can publish a free tier node to server out our app
+
+
+these instructions are your first foray into DevOps eh
+
+
+first let's make a ```Procfile``` - this tells heroku to give us a free tier server
+
+```touch Procfile```
+
+./Procfile
+```
+web: npm run server
+```
+
+
+we'll need a simple static server from npm
+
+
+```yarn add pushstate-server```
+
+
+
+and we'll need add a ```run server``` script in package.json
+
+
+./package.json
+```
+{
+  "name": "xcoin-mini",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "pushstate-server": "^3.0.1",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-scripts": "1.1.1",
+    "recharts": "^1.0.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "server": "npm run build && pushstate-server ./build"
+  }
+}
+```
+
+now we can commit our code to git, push to github and connect out github to heroku - and heroku will handle the rest!
