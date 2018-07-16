@@ -6,6 +6,7 @@ export default ({ fromCoin, toCoin, setFrom, setTo })=> (
     <label>
       From
       <select value={fromCoin} onChange={setFrom}>
+        <option value=''>Select From Coin</option>
         <option value='USD'>USD</option>
         <option value='EUR'>EUR</option>
         <option value='BTC'>BTC</option>
@@ -17,6 +18,7 @@ export default ({ fromCoin, toCoin, setFrom, setTo })=> (
     <label>
       To
       <select value={toCoin} onChange={setTo}>
+        <option value=''>Select To Coin</option>
         <option value='USD'>USD</option>
         <option value='EUR'>EUR</option>
         <option value='BTC'>BTC</option>
