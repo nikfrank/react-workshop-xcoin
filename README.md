@@ -9,18 +9,18 @@ google ```npm``` and ```create-react-app``` to get the prerequisites
 
 ## getting started
 
-```create-react-app xcoin```
+```$ create-react-app xcoin```
 
-```cd xcoin```
+```$ cd xcoin```
 
-```npm start```
+```$ npm start```
 
 you now have the default create-react-app starter running in your browser and can edit the ```src``` files live
 
 
 ## step 1, make a component to pick currencies
 
-```touch src/CoinPicker.js```
+```$ touch src/CoinPicker.js```
 
 open the new file in your text editor
 
@@ -164,7 +164,7 @@ We're following React's "lifting state" pattern which helps keep our logic organ
 
 let's finish up by making a css file for our CoinPicker and adding a bit of style
 
-```touch src/CoinPicker.css```
+```$ touch src/CoinPicker.css```
 
 
 ./src/CoinPicker.js
@@ -323,12 +323,12 @@ specifically we'll be working from [this example](https://jsfiddle.net/alidingli
 
 To add a package to our project, from the command line (in our project root)
 
-```yarn add recharts```
+```$ yarn add recharts```
 
 
 now we'll want to make another Component for our chart rendering logic
 
-```touch src/RatesChart.js```
+```$ touch src/RatesChart.js```
 
 ./src/RatesChart.js
 ```js
@@ -343,7 +343,7 @@ export default ({ rates })=> (
 );
 ```
 
-with a placeholder for now.
+with a placeholder for now. I've copied the named imports from the example linked above.
 
 We'll want to render our placeholder in our App
 
@@ -370,7 +370,7 @@ import RatesChart from './RatesChart';
 //...
 ```
 
-Now we're ready to pass data to our RatesChart component, so we can use a recharts LineChart there.
+Now we're ready to pass data to our RatesChart component, so we can use a recharts ```<LineChart>``` there.
 
 In Step 2, we saved our exchange rate data in ```this.state.historicalRates``` once we got it from the API
 
@@ -398,7 +398,7 @@ so let's pass it into our component by a prop called ```rates```
 
 and now in RatesChart we'll receive ```rates``` whenever it is updated.
 
-Let's try rendering out a LineChart based on the example
+Let's try rendering out a ```<LineChart>``` based on the example
 
 ./src/RatesChart.js
 ```js
@@ -421,11 +421,11 @@ export default ({ rates })=> (
 
 That worked pretty well!
 
-Notice that the LineChart uses our ```rates``` prop as our data source
+Notice that the ```<LineChart>``` uses our ```rates``` prop as our data source
 
-The ```<XAxis>``` uses ```time``` from our data for our x coordinate
+The ```<XAxis/>``` uses ```.time``` from our data for our x coordinate
 
-and each ```<Line>``` reads a different dataKey to make a line
+and each ```<Line/>``` reads a different dataKey to make a line
 
 
 The only thing that's weird is that our x-axis is displaying Unix epoch times (which users won't understand... I've tried)
@@ -440,7 +440,7 @@ let's look up in the [recharts XAxis component's API](http://recharts.org) to fi
 
 if you found ```tickFormatter```, that looks good (there isn't much documentation, but we should be able to guess how it works)
 
-let's guess that it gives us our XAxis value (currently an epoch seconds value) and will render whatever we return from the function we make
+let's guess that it gives us our x-axis tick value (currently an epoch seconds value) and will render whatever we return from the function we make
 
 
 so using javascript's built in [Date class](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) and [Date formatter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleString)
@@ -459,7 +459,7 @@ const dayFromEpochSeconds = epochSeconds =>
 
 ```
 
-now our chart is beautiful.
+now our chart's x-axis is legible.
 
 
 One last thing before we publish to the internet - let's not show an empty chart when we load the page
