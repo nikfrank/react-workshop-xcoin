@@ -244,6 +244,7 @@ and the browser ```fetch``` for our http call [read about fetch here](https://de
 Now let's fill in our API call!
 
 ./src/App.js
+```js
 //...
   componentDidUpdate(prevProps, prevState){
     if( this.state.toCoin && this.state.fromCoin &&
@@ -281,7 +282,7 @@ We'll be rendering this data into a chart in the next step. For now let's just s
 ```js
 //...
 
-state = {
+  state = {
     fromCoin: '',
     toCoin: '',
     historicalRates: [],
@@ -368,7 +369,7 @@ import RatesChart from './RatesChart';
 //...
 ```
 
-so now we're ready to pass data to our RatesChart component, so we can use a recharts LineChart there.
+Now we're ready to pass data to our RatesChart component, so we can use a recharts LineChart there.
 
 In Step 2, we saved our exchange rate data in ```this.state.historicalRates``` once we got it from the API
 
@@ -428,7 +429,9 @@ and each ```<Line>``` reads a different dataKey to make a line
 
 The only thing that's weird is that our x-axis is displaying Unix epoch times (which users won't understand... I've tried)
 
-let's look up in the [recharts XAxis component's API](http://recharts.org/en-US/api/XAxis) to find out how format our tick strings
+let's look up in the [recharts XAxis component's API](http://recharts.org) to find out how format our tick strings
+
+... click api then XAxis on the menu (sorry, deeplinking doesn't work on the recharts docs site)
 
 
 ...
