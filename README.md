@@ -134,6 +134,11 @@ We now need to make our onChange handlers (setFrom and setTo) to make our ```<se
 ./src/App.js
 ```js
 //...
+  state = {
+    fromCoin: 'WINGS',
+    toCoin: 'USD',
+  }
+
   setFrom = event=> this.setState({ fromCoin: event.target.value })
   setTo = event=> this.setState({ toCoin: event.target.value })
   
