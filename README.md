@@ -316,7 +316,7 @@ React has a wonderful ecosystem, with many packages ready to solve mot of our pr
 Let's add [recharts](https://npmjs.org/package/recharts) to display our exchange rate data we now have.
 
 
-Recharts has examples available [here](http://recharts.org/en-US/examples)
+Recharts has examples available [here](http://recharts.org/en-US) (click examples in the menu)
 
 specifically we'll be working from [this example](https://jsfiddle.net/alidingling/xqjtetw0/)
 
