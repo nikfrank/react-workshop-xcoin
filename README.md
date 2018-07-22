@@ -94,6 +94,7 @@ here we're passing the values to our CoinPicker via props, so it can display the
 
 [read more about React Component and Props here](https://reactjs.org/docs/components-and-props.html)
 
+!!! Make sure the value prop symbols are written in ALL CAPS, or else the API won't work later !!!
 
 ./src/CoinPicker.js
 ```js
