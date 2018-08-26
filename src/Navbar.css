@@ -15,12 +15,3 @@ nav div {
   line-height: 50px;
   cursor: pointer;
 }
-
-nav div:hover:not(.disabled) {
-  background-color: #111;
-  color: #eee;
-}
-
-nav div.disabled {
-  cursor: default;
-}

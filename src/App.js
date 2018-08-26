@@ -34,9 +34,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Navbar onSetCoinPair={this.setCoinPair}
-                fromCoin={this.state.fromCoin}
-                toCoin={this.state.toCoin}/>
+        <Navbar onSetCoinPair={this.setCoinPair} />
         <CoinPicker fromCoin={this.state.fromCoin}
                     toCoin={this.state.toCoin}
                     setFrom={this.setFrom}

@@ -549,3 +549,156 @@ $ touch src/Navbar.js
 $ touch src/Navbar.css
 ```
 
+we'll add component boilerplate for the navbar
+
+./src/Navbar.js
+```js
+import React from 'react';
+import './Navbar.css';
+
+export default ()=> (
+  <nav>
+    <div>
+      WINGS to USD
+    </div>
+    
+    <div>
+      BTC to USD
+    </div>
+    
+    <div>
+      ETH to USD
+    </div>
+  </nav>
+);
+```
+
+render it in our app
+
+./src/App.js
+```js
+//...
+
+  render() {
+    return (
+      <div className="App">
+        <Navbar />
+        
+        <CoinPicker ... ... />
+        { /* ... RateChart ... */ }
+      </div>
+    );
+  }
+  
+//...
+```
+
+and style our navbar to be a navbar using [flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
+
+./src/Navbar.css
+```css
+nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  
+  width: 100vw;
+  height: 50px;
+
+  background-color: black;
+  color: white;
+}
+```
+
+
+Now we have a navbar which does nothing. We want the nav items to update the ```fromCoin``` and ```toCoin``` based on the item which is clicked
+
+let's write a callback function which does the state update and pass it to our Navbar as a prop
+
+./src/App.js
+```
+//...
+
+  setCoinPair = (fromCoin, toCoin)=> this.setState({ fromCoin, toCoin })
+
+//...
+
+    <Navbar onSetCoinPair={this.setCoinPair} />
+
+//...
+```
+
+and call it from our Navbar
+
+./src/Navbar.js
+```js
+//...
+
+export default ({ onSetCoinPair })=> (
+  <nav>
+    <div onClick={()=> onSetCoinPair('WINGS', 'USD')}>
+      WINGS to USD
+    </div>
+    
+    <div onClick={()=> onSetCoinPair('BTC', 'USD')}>
+      BTC to USD
+    </div>
+    
+    <div onClick={()=> onSetCoinPair('ETH', 'USD')}>
+      ETH to USD
+    </div>
+  </nav>
+);
+```
+
+and we should style our Navbar's clickable items to appear clickable
+
+./src/Navbar.css
+```css
+//...
+
+nav div {
+  width: 180px;
+  line-height: 50px;
+  cursor: pointer;
+}
+```
+
+very nice!
+
+one last thing we should do is improve the styling on our chart to make our widget look more like an app
+
+(remember the styling is through a [CSS as JSON](https://reactjs.org/docs/dom-elements.html#style) React prop)
+
+./src/RatesChart.js
+```js
+//...
+
+  <LineChart width={window.innerWidth} height={400} data={rates}
+             margin={{top: 25, right: 30, left: 20, bottom: 5}}>
+
+//...
+```
+
+
+
+## conclusion
+
+we can ```git commit``` our step 5 changes and ```git push``` them to heroku
+
+we'll now have a very nice example widget to put in our portfolio!
+
+
+it's not perfect, but in the process of building it, we've covered quite a fair amount of the React framework:
+
+- ```render``` from ```state```
+- React Component's lifecycle
+- Styling (CSS) in React
+- Calling remote APIs from user events
+- Using third party library's Components for fast development
+- Continuous deployment of our application
+
+
+I hope it was fun and that you'll keep learning!
+
+-nik
