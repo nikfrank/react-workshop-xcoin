@@ -3,6 +3,7 @@ import './App.css';
 
 import CoinPicker from './CoinPicker';
 import RatesChart from './RatesChart';
+import Navbar from './Navbar';
 
 class App extends Component {
   state = {
@@ -10,7 +11,7 @@ class App extends Component {
     toCoin: '',
     historicalRates: [],
   }
-
+  
   componentDidUpdate(prevProps, prevState){
     if( this.state.toCoin && this.state.fromCoin &&
         ( (this.state.fromCoin !== prevState.fromCoin ) ||
@@ -27,10 +28,15 @@ class App extends Component {
   
   setFrom = event=> this.setState({ fromCoin: event.target.value })
   setTo = event=> this.setState({ toCoin: event.target.value })
+
+  setCoinPair = (fromCoin, toCoin)=> this.setState({ fromCoin, toCoin })
   
   render() {
     return (
       <div className="App">
+        <Navbar onSetCoinPair={this.setCoinPair}
+                fromCoin={this.state.fromCoin}
+                toCoin={this.state.toCoin}/>
         <CoinPicker fromCoin={this.state.fromCoin}
                     toCoin={this.state.toCoin}
                     setFrom={this.setFrom}

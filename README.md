@@ -536,3 +536,16 @@ and we'll need add a ```run server``` script in package.json
 ```
 
 now we can commit our code to git, push to github and connect out github to heroku - and heroku will handle the rest!
+
+
+## step 5, menu layout
+
+our widget is really great, and we can see how much our [WINGS](https://www.wings.ai/) are worth now - but it doesn't really look like a web app.
+
+So let's make a navbar which let's our users pick the most popular coin exchange pairs.
+
+```
+$ touch src/Navbar.js
+$ touch src/Navbar.css
+```
+

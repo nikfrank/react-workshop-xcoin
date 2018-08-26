@@ -5,8 +5,8 @@ const dayFromEpochSeconds = epochSeconds =>
   (new Date(epochSeconds * 1000)).toLocaleDateString('en-US');
 
 export default ({ rates })=> (
-  <LineChart width={600} height={300} data={rates}
-             margin={{top: 5, right: 30, left: 20, bottom: 5}}>
+  <LineChart width={window.innerWidth} height={400} data={rates}
+             margin={{top: 25, right: 30, left: 20, bottom: 5}}>
     <XAxis dataKey='time' tickFormatter={dayFromEpochSeconds}/>
     <YAxis/>
     <CartesianGrid strokeDasharray='3 3'/>
