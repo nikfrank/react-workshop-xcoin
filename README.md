@@ -4,23 +4,23 @@ in 4 quick steps, we'll go from nothing to a cryptocurrency converter widget onl
 
 you can see a running example [here](https://nik-xcoin.herokuapp.com)
 
-google ```npm``` and ```create-react-app``` to get the prerequisites
+google `npm` and `create-react-app` to get the prerequisites
 
 
 ## getting started
 
-```$ create-react-app xcoin```
+`$ create-react-app xcoin`
 
-```$ cd xcoin```
+`$ cd xcoin`
 
-```$ npm start```
+`$ npm start`
 
-you now have the default create-react-app starter running in your browser and can edit the ```src``` files live
+you now have the default create-react-app starter running in your browser and can edit the `src` files live
 
 
 ## step 1, make a component to pick currencies
 
-```$ touch src/CoinPicker.js```
+`$ touch src/CoinPicker.js`
 
 open the new file in your text editor
 
@@ -63,7 +63,7 @@ export default App;
 (at this point we can also delete most of App.css if you want, as we have deleted the elements being styled)
 
 
-We'll want two dropdown ```<select>``` tags to choose our ```from``` and ```to``` currencies
+We'll want two dropdown `<select>` tags to choose our `from` and `to` currencies
 
 
 first, create a state for our App and set two default coins
@@ -129,7 +129,7 @@ export default ({ fromCoin, toCoin, setFrom, setTo })=> (
 
 Here we are using React's controlled input pattern [read more in their docs](https://reactjs.org/docs/forms.html)
 
-We now need to make our onChange handlers (setFrom and setTo) to make our ```<select>```s work
+We now need to make our onChange handlers (setFrom and setTo) to make our `<select>`s work
 
 
 ./src/App.js
@@ -156,7 +156,7 @@ We now need to make our onChange handlers (setFrom and setTo) to make our ```<se
 //...
 ```
 
-now our ```<select>```s will trigger state updates from CoinPicker into App when on user change events!
+now our `<select>`s will trigger state updates from CoinPicker into App when on user change events!
 
 [read here about React's this.setState](https://reactjs.org/docs/state-and-lifecycle.html)
 
@@ -164,7 +164,7 @@ We're following React's "lifting state" pattern which helps keep our logic organ
 
 let's finish up by making a css file for our CoinPicker and adding a bit of style
 
-```$ touch src/CoinPicker.css```
+`$ touch src/CoinPicker.css`
 
 
 ./src/CoinPicker.js
@@ -205,11 +205,11 @@ We're done the first step - we can pick our currencies. Next is to gather data f
 Whenever a user selects a new coin, we want to call an API to get historical conversion rates to display
 
 
-When we get the data back from the api, we'll save it to our ```state```, so in step 3 we can pass it to a chart!
+When we get the data back from the api, we'll save it to our `state`, so in step 3 we can pass it to a chart!
 
 
 
-we'll use React's ```componentDidUpdate``` lifecycle method to trigger the call [read more here](https://reactjs.org/docs/react-component.html#componentdidupdate)
+we'll use React's `componentDidUpdate` lifecycle method to trigger the call [read more here](https://reactjs.org/docs/react-component.html#componentdidupdate)
 
 
 React will call this function whenever our state changes, so we'll want to make sure we can make a new request before bothering to call
@@ -236,10 +236,10 @@ if that boolean statement looks weird to you read about [truthy](https://develop
 
 we'll be using [cryptocompare's histoday api](https://www.cryptocompare.com/api/#-api-data-histoday-) for data
 
-and the browser ```fetch``` for our http call [read about fetch here](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch)
+and the browser `fetch` for our http call [read about fetch here](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch)
 
 
-```fetch``` uses ```Promise```s, if you want to try them out first [MDN has a playground here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/then)
+`fetch` uses `Promise`s, if you want to try them out first [MDN has a playground here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/then)
 
 
 Now let's fill in our API call!
@@ -272,12 +272,12 @@ We wait for the response,
 
 Try running this in the browser (set values for your currencies) and you'll see the responseJson logged to the console
 
-we can see that the conversaion rate we want is in an array called ```.Data``` (not too expressive a name... SAD!)
+we can see that the conversion rate we want is in an array called `.Data` (not too expressive a name... SAD!)
 
-each item in the array has a ```.time``` (which is in [unix epoch seconds](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/now)) and a few different rates (I pay attention to ```.open``` for simplicity's sake)
+each item in the array has a `.time` (which is in [unix epoch seconds](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/now)) and a few different rates (I pay attention to `.open` for simplicity's sake)
 
 
-We'll be rendering this data into a chart in the next step. For now let's just save what we want to our ```.state```
+We'll be rendering this data into a chart in the next step. For now let's just save what we want to our `.state`
 
 .src/App.js
 ```js
@@ -323,12 +323,16 @@ specifically we'll be working from [this example](https://jsfiddle.net/alidingli
 
 To add a package to our project, from the command line (in our project root)
 
-```$ yarn add recharts```
+`$ yarn add recharts`
+
+or if you don't have yarn
+
+`$ npm install --save recharts`
 
 
 now we'll want to make another Component for our chart rendering logic
 
-```$ touch src/RatesChart.js```
+`$ touch src/RatesChart.js`
 
 ./src/RatesChart.js
 ```js
@@ -370,11 +374,11 @@ import RatesChart from './RatesChart';
 //...
 ```
 
-Now we're ready to pass data to our RatesChart component, so we can use a recharts ```<LineChart>``` there.
+Now we're ready to pass data to our RatesChart component, so we can use a recharts `<LineChart>` there.
 
-In Step 2, we saved our exchange rate data in ```this.state.historicalRates``` once we got it from the API
+In Step 2, we saved our exchange rate data in `this.state.historicalRates` once we got it from the API
 
-so let's pass it into our component by a prop called ```rates```
+so let's pass it into our component by a prop called `rates`
 
 ./src/App.js
 ```js
@@ -396,9 +400,9 @@ so let's pass it into our component by a prop called ```rates```
 //...
 ```
 
-and now in RatesChart we'll receive ```rates``` whenever it is updated.
+and now in RatesChart we'll receive `rates` whenever it is updated.
 
-Let's try rendering out a ```<LineChart>``` based on the example
+Let's try rendering out a `<LineChart>` based on the example
 
 ./src/RatesChart.js
 ```js
@@ -421,11 +425,11 @@ export default ({ rates })=> (
 
 That worked pretty well!
 
-Notice that the ```<LineChart>``` uses our ```rates``` prop as our data source
+Notice that the `<LineChart>` uses our `rates` prop as our data source
 
-The ```<XAxis/>``` uses ```.time``` from our data for our x coordinate
+The `<XAxis/>` uses `.time` from our data for our x coordinate
 
-and each ```<Line/>``` reads a different dataKey to make a line
+and each `<Line/>` reads a different dataKey to make a line
 
 
 The only thing that's weird is that our x-axis is displaying Unix epoch times (which users won't understand... I've tried)
@@ -438,7 +442,7 @@ let's look up in the [recharts XAxis component's API](http://recharts.org) to fi
 ...
 
 
-if you found ```tickFormatter```, that looks good (there isn't much documentation, but we should be able to guess how it works)
+if you found `tickFormatter`, that looks good (there isn't much documentation, but we should be able to guess how it works)
 
 let's guess that it gives us our x-axis tick value (currently an epoch seconds value) and will render whatever we return from the function we make
 
@@ -466,7 +470,7 @@ One last thing before we publish to the internet - let's not show an empty chart
 
 [Conditional rendering](https://reactjs.org/docs/conditional-rendering.html#inline-if-else-with-conditional-operator) is pretty straightforward in React, so let's give it a try
 
-we'll want to only render the RatesChart once ```this.state.historicalRates``` has values in it
+we'll want to only render the RatesChart once `this.state.historicalRates` has values in it
 
 
 ./src/App.js
@@ -492,9 +496,9 @@ If you've made an account on heroku.com, we can publish a free tier node to serv
 these instructions are your first foray into DevOps eh
 
 
-first let's make a ```Procfile``` - this tells heroku to give us a free tier server
+first let's make a `Procfile` - this tells heroku to give us a free tier server
 
-```touch Procfile```
+`$ touch Procfile`
 
 ./Procfile
 ```
@@ -505,11 +509,14 @@ web: npm run server
 we'll need a simple static server from npm
 
 
-```yarn add pushstate-server```
+`$ yarn add pushstate-server`
+
+or for npm users
+
+`$ npm install -S pushstate-server`
 
 
-
-and we'll need add a ```run server``` script in package.json
+and we'll need add a `run server` script in package.json
 
 
 ./package.json
@@ -611,7 +618,7 @@ nav {
 ```
 
 
-Now we have a navbar which does nothing. We want the nav items to update the ```fromCoin``` and ```toCoin``` based on the item which is clicked
+Now we have a navbar which does nothing. We want the nav items to update the `fromCoin` and `toCoin` based on the item which is clicked
 
 let's write a callback function which does the state update and pass it to our Navbar as a prop
 
@@ -684,14 +691,14 @@ one last thing we should do is improve the styling on our chart to make our widg
 
 ## conclusion
 
-we can ```git commit``` our step 5 changes and ```git push``` them to heroku
+we can `$ git commit` our step 5 changes and `$ git push` them to heroku
 
 we'll now have a very nice example widget to put in our portfolio!
 
 
 it's not perfect, but in the process of building it, we've covered quite a fair amount of the React framework:
 
-- ```render``` from ```state```
+- `render` from `state`
 - React Component's lifecycle
 - Styling (CSS) in React
 - Calling remote APIs from user events
