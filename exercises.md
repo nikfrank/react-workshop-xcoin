@@ -26,9 +26,7 @@ in <sub>./src/App.js</sub> let's render a
 
 ### solutions
 
-1.
-
-update the `render` function to
+1. update the `render` function to
 
 ```js
   render() {
@@ -41,9 +39,7 @@ update the `render` function to
 (leaving everything else the same)
 
 
-2.
-
-update the `render` function to
+2. update the `render` function to
 
 ```js
   render() {
@@ -57,9 +53,7 @@ update the `render` function to
 
 
 
-3.
-
-update the `render` function to
+3. update the `render` function to
 
 ```js
   render() {
@@ -74,9 +68,7 @@ update the `render` function to
 take note! the self closing / at the end is REQUIRED in JSX (it was optional in HTML)
 
 
-4.
-
-update the `render` function to
+4. update the `render` function to
 
 ```js
   render() {
@@ -94,9 +86,7 @@ update the `render` function to
 
 
 
-5.
-
-update the `render` function to
+5. update the `render` function to
 
 ```js
   render() {
@@ -137,9 +127,7 @@ let's practice rendering into a breakout a
 ### solutions
 
 
-1.
-
-update the `render` function to
+1. update the `render` function to
 
 ```js
   render() {
@@ -157,9 +145,7 @@ update the `render` function to
 (leaving everything else the same)
 
 
-2.
-
-update the `render` function to
+2. update the `render` function to
 
 ```js
   render() {
@@ -178,9 +164,7 @@ update the `render` function to
 
 
 
-3.
-
-update the `render` function to
+3. update the `render` function to
 
 ```js
   render() {
@@ -198,7 +182,7 @@ update the `render` function to
 (leaving everything else the same)
 
 
-react by default renders just the string elements, so if we want to format the output a bit we can do
+react by default renders just the elements with no divider, so if we want to format the output a bit we can do
 
 
 ```js
@@ -214,10 +198,10 @@ react by default renders just the string elements, so if we want to format the o
   }
 ```
 
+using the [Array.join method](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/join)
 
-4.
 
-react doesn't like objects being rendered directly, so we'll have to use [JSON.stringify](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify) to render them as strings
+4. react doesn't like objects being rendered directly, so we'll have to use [JSON.stringify](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify) to render them as strings
 
 update the `render` function to
 
@@ -237,9 +221,7 @@ update the `render` function to
 (leaving everything else the same)
 
 
-5.
-
-react also doesn't like rendering `Date` objects directly, so here we can use [Date's .toString method](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toString) to render
+5. react also doesn't like rendering `Date` objects directly, so here we can use [Date's .toString method](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toString) to render
 
 we can also render the `Date` as the [epoch time](https://www.google.com/search?q=unix+epoch+time) number using the newer [Date.now](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/now)
 
@@ -260,6 +242,140 @@ update the `render` function to
 ```
 
 (leaving everything else the same)
+
+
+
+## CSS basics in react
+
+all of those HTML elements are ugly like 1996. Let's apply some CSS classes and rules to our elements to achieve web beauty.
+
+react has two main ways to apply CSS: [className](https://reactjs.org/docs/faq-styling.html) and [style prop](https://reactjs.org/docs/dom-elements.html#style) here we will practice both.
+
+./src/App.js already does `import './App.css';`, so we can write our CSS into ./src/App.css 
+
+
+1. render a `<div/>` with a `background-color` from CSS and a `border` from an inline `style` prop
+
+2. render a `<p/>` with a `font-size` from CSS and a `color` from an inline `style` prop
+
+3. render an `<img/>` with a `margin` from CSS and a `height` and `width` from an inline `style` prop
+
+4. render a `<ul/>` with a `list-style` from CSS and `padding` from an inline `style` prop
+
+5. render an `<input/>` with `border-radius` from CSS and `padding` from an inline `style` prop
+
+
+
+### solutions
+
+1. update the `render` function to
+
+```js
+  render() {
+    return (
+      <div className='shady' style={{ border: '1px solid black' }}>
+        Shady div
+      </div>
+    );
+  }
+```
+
+and in ./src/App.css add a rule
+
+```css
+.shady {
+  background-color: #ddd;
+}
+```
+
+
+2. update the `render` function to
+
+```js
+  render() {
+    return (
+      <p className='announcement' style={{ color: 'red' }}>
+        whats up!
+      </p>
+    );
+  }
+```
+
+and in ./src/App.css add a rule
+
+```css
+.announcement {
+  font-size: 20px;
+}
+```
+
+
+3. update the `render` function to
+
+```js
+  render() {
+    return (
+      <img src='https://img.devrant.com/devrant/rant/r_432928_TaCud.jpg'
+           className='centered-image' style={{ height: '80vh', width: 'auto' }} />
+    );
+  }
+```
+
+and in ./src/App.css add a rule
+
+```css
+.centered-image {
+  margin: 10vh auto;
+}
+```
+
+
+4. update the `render` function to
+
+```js
+  render() {
+    return (
+      <ul className='simple-list' style={{ padding: 0 }}>
+        <li>first</li>
+        <li>second</li>
+        <li>third</li>
+      </ul>
+    );
+  }
+```
+
+and in ./src/App.css add a rule
+
+```css
+.simple-list {
+  list-style: none;
+}
+```
+
+this sample solution shows how to override the browser default styles on `<ul/>` which we commonly don't want!
+
+
+
+5. update the `render` function to
+
+```js
+  render() {
+    return (
+      <input className='rounded' style={{ padding: 5 }} placeholder='type here'/>
+    );
+  }
+```
+
+and in ./src/App.css add a rule
+
+```css
+.rounded {
+  border-radius: 5px;
+}
+```
+
+that looks better!
+
 
 
 
