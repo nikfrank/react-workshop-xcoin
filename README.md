@@ -17,6 +17,8 @@ google `npm` and `create-react-app` to get the prerequisites
 
 you now have the default create-react-app starter running in your browser and can edit the `src` files live
 
+you are now also ready to work through the [exercises](/exercises.md)!
+
 
 ## step 1, make a component to pick currencies
 
