@@ -377,34 +377,63 @@ and in ./src/App.css add a rule
 that looks better!
 
 
+## functions
+
+javascript is all about functions. The only work you do that is possibly worth money is "writing functions". Everything is a function, even stuff you didn't know was a function. It's functions all the way down from here. Be one with the function, know its nature; you will master javascript.
+
+We need to learn a word here "instance method". With all these functions, we need to name them by what they do and how they operate.
+
+What is an instance method?
+
+instance means we have the word "this". This cup is an instance of a cup - it has some cold coffee in it... if I want to heat up the coffee in this cup, I need to use an instance method this.heatCoffee, which will heat the coffee in this cup.
+
+method is just a function associated with a `class`. Since `Component`s are all `class`es, "instance method" means a function defined on our `Component` `class` which operates on a single instance of that `Component`.
+
+How do I write an instance method?
+
+```js
+import React, { Component } from 'react';
+
+class App extends Component {
+
+  state = { word: 'bird' }
+
+  askIfYouveHeard = ()=> {
+    console.log('have you heard that the ', this.state.word, ' is the word?');
+  }
+
+  render(){
+    return (
+      <div onClick={this.askIfYouveHeard}>{this.state.word}</div>
+    );
+  }
+}
+
+export default App;
+```
+
+in this silly example, `this.askIfYouveHeard` is an instance method (you can see it uses the keyword `this` in its body, so it has to be an *instance* method)
+
+`this.state` is [in react] always an instance value, which is the same thing, it just isn't a function.
+
+then `render` is a special case react lifecycle function which gives us the `this` keyword even though it's technically a static method (static is the opposite of instance)
+
+now we want to write a bunch of instance methods, and use an `onClick` prop to bind the instance method to user click events.
+
+
+1. use an instance method to log a joke to the console on user click
+
+2. use an instance method to [alert](https://developer.mozilla.org/en-US/docs/Web/API/Window/alert) on user click
+
+3. use an instance method and a [setState](https://medium.freecodecamp.org/get-pro-with-react-setstate-in-10-minutes-d38251d1c781) to display the time of last click
+
+4. use an instance method and a setState to count the user clicks
+
+5. use an instance method a setState and two css classes to toggle day / night mode
 
 
 
-
-
-format:
-
-take an example out of the app
-
-tag it with a few concepts it uses
-
-write 5 examples of using each concept written as challenge prompts
-
-eg
-
-1. `use an instance method fat arrow to log on user click`
-
-2. `use an instance method fat arrow to alert on user click`
-
-3. `use an instance method fat arrow and a setState to display the time of last click`
-
-4. `use an instance method fat arrow and a setState to count the user clicks`
-
-5. `use an instance method fat arrow a setState and two css classes to toggle day / night mode`
-
-...
-
-solutions, start from a fresh create-react-app
+### solutions
 
 
 1.
@@ -412,7 +441,27 @@ solutions, start from a fresh create-react-app
 ```js
 //...
 
-  logClick = ()=> console.log('clicked!');
+  logClick = ()=> console.log('my girlfriend called, she said "come over, noone\'s home. I went over, noone was home!')
+
+//...
+  render(){
+    return (
+      <div onClick={this.logClick}>click me I dare you</div>
+    );
+  }
+//...
+```
+
+note here I've used a [one line fat arrow function](https://www.google.com/search?q=one+line+fat+arrow+function)
+
+you could have also written just as well
+
+```js
+//...
+
+  logClick = ()=> {
+    console.log('You can\'t get un-famous. You can get infamous, but you can\'t get un-famous.')
+  }
 
 //...
   render(){
@@ -424,12 +473,13 @@ solutions, start from a fresh create-react-app
 ```
 
 
+
 2.
 
 ```js
 //...
 
-  alertClick = ()=> alert('clicked!');
+  alertClick = ()=> alert('clicked!')
 
 //...
   render(){
@@ -448,7 +498,7 @@ solutions, start from a fresh create-react-app
 
   state = { lastClickTime: null }
 
-  recordClickTime = ()=> this.setState({ lastClickTime: (new Date()).toString() });
+  recordClickTime = ()=> this.setState({ lastClickTime: (new Date()).toString() })
 
 //...
   render(){
@@ -470,7 +520,7 @@ solutions, start from a fresh create-react-app
 
   state = { count: 0 }
 
-  countClick = ()=> this.setState(state => ({ count: state.count+1 }) );
+  countClick = ()=> this.setState(state => ({ count: state.count+1 }) )
 
 //...
   render(){
@@ -505,7 +555,7 @@ solutions, start from a fresh create-react-app
 
   state = { isDayMode: true }
 
-  toggleDayMode = ()=> this.setState(state => ({ isDayMode: !state.isDayMode }) );
+  toggleDayMode = ()=> this.setState(state => ({ isDayMode: !state.isDayMode }) )
 
 //...
   render(){
