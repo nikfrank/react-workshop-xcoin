@@ -1222,7 +1222,7 @@ class App extends Component {
     return (
       <div>
         //...
-        <VersusImages imgSrc={[
+        <VersusImages imgSrcs={[
           'https://vignette.wikia.nocookie.net/simpsons/images/8/80/Drederick_tatum_tapped_out.png',
           'https://i.pinimg.com/originals/b0/5b/83/b05b8334bf4502c675f741059b5b3eb8.gif',
         ]} />
