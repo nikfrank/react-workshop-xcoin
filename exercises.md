@@ -567,3 +567,141 @@ you could have also written just as well
   }
 //...
 ```
+
+
+## import / export
+
+The exercises so far have dealt only with work we want to do in one file. That's great, but if we keep working only in one file, soon it will get really long and be difficult to understand! What we want to do in react is write [Components](https://reactjs.org/docs/react-component.html) and to give them each their own file. Then we're going to import them into the ./src/App.js to render them out. [JS has a relatively new import/export syntax that we'll need to know to do these exercises](https://hackernoon.com/import-export-default-require-commandjs-javascript-nodejs-es6-vs-cheatsheet-different-tutorial-example-5a321738b50f)
+
+Let's practice once:
+
+from the command line (in the project root)
+
+`$ touch src/BirdWord.js`
+
+and in your text editor in the ./src/BirdWord.js file you've just made we can paste the silly example from earlier
+
+<sub>./src/BirdWord.js</sub>
+```js
+import React, { Component } from 'react';
+
+class BirdWord extends Component {
+
+  state = { word: 'bird' }
+
+  askIfYouveHeard = ()=> {
+    console.log('have you heard that the ', this.state.word, ' is the word?');
+  }
+
+  render(){
+    return (
+      <div onClick={this.askIfYouveHeard}>{this.state.word}</div>
+    );
+  }
+}
+```
+
+and at the end we need to export this Component
+
+```js
+//...
+
+export default BirdWord;
+```
+
+
+to render it out now, let's import it in ./src/App.js
+
+
+<sub>./src/App.js</sub>
+```js
+import React, { Component } from 'react';
+import BirdWord from './BirdWord';
+
+class App extends Component {
+
+  render(){
+    return (
+      <BirdWord />
+    );
+  }
+}
+
+export default App;
+```
+
+that was fun! Now we can rewrite all of our function examples as Components...
+
+
+
+1. write a Component in its own file that logs a joke to the console on user click
+
+2. write a Component in its own file that does an [alert](https://developer.mozilla.org/en-US/docs/Web/API/Window/alert) on user click
+
+3. write a Component in its own file that does a [setState](https://medium.freecodecamp.org/get-pro-with-react-setstate-in-10-minutes-d38251d1c781) to display the time of last click
+
+4. write a Component in its own file that does a setState to count the user clicks
+
+5. write a Component in its own file that does a setState and two css classes to toggle day / night mode
+
+5.b. make a separate css file for this Component (./src/ComponentName.css) for the two css rules to live in
+
+
+
+
+## rendering props
+
+You've probably seen already in the [reactjs.org/docs](https://reactjs.org/docs/components-and-props.html) links in these exercises `props` in Components. Props are how we pass values to our Components from the (parent) Components which render them. Programming each Component with just the props they need is very important, mostly we'll learn the art through practice!
+
+Let's practice by setting the `word` in our `BirdWord` Component via prop
+
+
+<sub>./src/BirdWord.js</sub>
+```js
+import React, { Component } from 'react';
+
+class BirdWord extends Component {
+
+  askIfYouveHeard = ()=> {
+    console.log('have you heard that the ', this.props.word, ' is the word?');
+  }
+
+  render(){
+    return (
+      <div onClick={this.askIfYouveHeard}>{this.props.word}</div>
+    );
+  }
+}
+
+export default BirdWord;
+```
+
+
+now that we're using `this.props.word`, we'll need to have set it from ./src/App.js
+
+
+<sub>./src/App.js</sub>
+```js
+import React, { Component } from 'react';
+import BirdWord from './BirdWord';
+
+class App extends Component {
+
+  render(){
+    return (
+      <BirdWord word='bird'/>
+    );
+  }
+}
+
+export default App;
+```
+
+Great! 
+
+
+
+
+
+
+[Functional Components](https://www.robinwieruch.de/react-function-component/)
