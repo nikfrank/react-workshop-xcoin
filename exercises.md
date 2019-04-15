@@ -1605,12 +1605,14 @@ class BirdWord extends Component {
   }
 
   changeToFrench = ()=> this.props.onUpdate('oiseau')
+  changeToItalian = ()=> this.props.onUpdate('uccello')
 
   render(){
     return (
       <div>
         <div onClick={this.askIfYouveHeard}>{this.props.word}</div>
         <button onClick={this.changeToFrench}>Quoi?</button>
+        <button onClick={this.changeToItalian}>Cosa?</button>
       </div>
     );
   }
@@ -1622,6 +1624,10 @@ export default BirdWord;
 We now achieved "Separation of Concerns" by putting all of the view logic in the child Component, and all of the state management logic in the Parent Component.
 
 This pattern will allow us to treat our child Components like the simple view bindings they really are (in the next section)
+
+And it allowed us to easily add a feature (Italian) to our Component.
+
+It will often be the case that organizing our Components correctly makes building features easier forever and ever.
 
 Let's practice:
 
