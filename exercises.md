@@ -2233,9 +2233,76 @@ we will cover this more in depth in the next Application (Snoop Jobs) - it is im
 
 1.
 
+<sub>./src/App.js</sub>
+```js
+import React, { Component } from 'react';
+import './App.css';
+
+class App extends Component {
+  state = { name: '' }
+
+  onNameChange = event => this.setState({ name: event.target.value })
+
+  render(){
+    return (
+      <input value={this.state.name} onChange={this.onNameChange} placeholder='Type Name Here'/>
+    );
+  }
+}
+
+export default App;
+```
+
+
 2.
 
+<sub>./src/App.js</sub>
+```js
+import React, { Component } from 'react';
+import './App.css';
+
+class App extends Component {
+  state = { age: 25 }
+
+  onAgeChange = event => this.setState({ age: 1*event.target.value })
+
+  render(){
+    return (
+      <input value={this.state.age}
+             type='number'
+             onChange={this.onAgeChange} />
+    );
+  }
+}
+
+export default App;
+```
+
+here `1* event.target.value` will cast the string value into a number (inputs always give us strings)
+
+
 3.
+
+<sub>./src/App.js</sub>
+```js
+import React, { Component } from 'react';
+import './App.css';
+
+class App extends Component {
+  state = { isGreat: true }
+
+  onGreatnessChange = event => this.setState({ isGreat: event.target.checked })
+
+  render(){
+    return (
+      <input type='checkbox' checked={this.state.isGreat} onChange={this.onGreatnessChange}/>
+    );
+  }
+}
+
+export default App;
+```
+
 
 
 </details>
