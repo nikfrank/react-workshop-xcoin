@@ -109,6 +109,8 @@ take note! the self closing / at the end is REQUIRED in JSX (it was optional in 
 
 </details>
 
+---
+
 
 ## rendering javascript values
 
@@ -135,6 +137,10 @@ let's practice rendering into a breakout a
 
 
 ### solutions
+
+<details>
+<summary>Click here to view solutions for this section</summary>
+
 
 
 1. update the `render` function to
@@ -253,6 +259,10 @@ update the `render` function to
 
 (leaving everything else the same)
 
+</details>
+
+---
+
 
 
 ## CSS basics in react
@@ -280,6 +290,10 @@ react has two main ways to apply CSS: [className](https://reactjs.org/docs/faq-s
 
 
 ### solutions
+
+<details>
+<summary>Click here to view solutions for this section</summary>
+
 
 1. update the `render` function to
 
@@ -389,6 +403,11 @@ and in ./src/App.css add a rule
 
 that looks better!
 
+</details>
+
+---
+
+
 
 ## functions
 
@@ -449,6 +468,10 @@ now we want to write a bunch of instance methods, and use an `onClick` prop to b
 
 
 ### solutions
+
+<details>
+<summary>Click here to view solutions for this section</summary>
+
 
 
 1.
@@ -583,6 +606,10 @@ you could have also written just as well
 //...
 ```
 
+</details>
+
+---
+
 
 ## import / export
 
@@ -667,6 +694,10 @@ that was fun! Now we can rewrite all of our function examples as Components...
 
 
 ### solutions
+
+<details>
+<summary>Click here to view solutions for this section</summary>
+
 
 1. `$ touch ./src/Joke.js`
 
@@ -934,6 +965,11 @@ export default App;
 ```
 
 
+</details>
+
+---
+
+
 
 
 ## rendering props
@@ -1001,6 +1037,10 @@ export default App;
 
 
 ### solutions
+
+<details>
+<summary>Click here to view solutions for this section</summary>
+
 
 1. `$ touch ./src/Price.js`
 
@@ -1238,6 +1278,9 @@ class App extends Component {
 export default App;
 ```
 
+</details>
+
+---
 
 
 
@@ -1321,6 +1364,10 @@ then see that react updates the child Component for you
 
 
 ### solutions
+
+<details>
+<summary>Click here to view solutions for this section</summary>
+
 
 1. (leaving ./src/Price.js the same)
 
@@ -1512,6 +1559,9 @@ class App extends Component {
 export default App;
 ```
 
+</details>
+
+---
 
 
 
@@ -1554,6 +1604,10 @@ call the prop function from the `<button/>`'s `onClick`
 
 ### solutions
 
+<details>
+<summary>Click here to view solutions for this section</summary>
+
+
 1.
 
 2.
@@ -1564,6 +1618,9 @@ call the prop function from the `<button/>`'s `onClick`
 
 5.
 
+</details>
+
+---
 
 
 
@@ -1619,6 +1676,10 @@ refactor the child Component to be a functional component
 
 ### solutions
 
+<details>
+<summary>Click here to view solutions for this section</summary>
+
+
 1.
 
 2.
@@ -1628,6 +1689,11 @@ refactor the child Component to be a functional component
 4.
 
 5.
+
+
+</details>
+
+---
 
 
 
