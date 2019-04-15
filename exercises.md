@@ -991,7 +991,7 @@ export default App;
 
 3. pass an Object with a String field like `{ name: 'nik' }` to a new Component to render
 
-4. pass a url for an image as a prop to a new Component, render the correct image
+4. pass a url for an image as a prop to a new Component along with a string title as a prop, render the correct image and title
 
 5. pass an Array of image urls as a prop for a new Component to render (each separately)
 
@@ -1098,11 +1098,141 @@ export default App;
 ```
 
 
-3.
+3. `$ touch ./src/NameTag.js`
 
-4.
+<sub>./src/NameTag.js</sub>
+```js
+import React, { Component } from 'react';
 
-5.
+class NameTag extends Component {
+  render(){
+    return (
+      <div> {this.props.name.last}, {this.props.name.first} </div>
+    );
+  }
+}
+
+export default NameTag;
+```
+
+<sub>./src/App.js</sub>
+```js
+import React, { Component } from 'react';
+import './App.css';
+
+//...
+import NameTag from './NameTag';
+
+class App extends Component {
+  //...
+  
+  render(){
+    return (
+      <div>
+        //...
+        <NameTag name={ {first: 'peter', last: 'parker'} } />
+      </div>
+    );
+  }
+}
+
+export default App;
+```
+
+
+
+4. `$ touch ./src/TitledImage.js`
+
+<sub>./src/TitledImage.js</sub>
+```js
+import React, { Component } from 'react';
+
+class TitledImage extends Component {
+  render(){
+    return (
+      <div>
+        <img src={this.props.imgSrc}/>
+        <h3>{this.props.title}</h3>
+      </div>
+    );
+  }
+}
+
+export default TitledImage;
+```
+
+<sub>./src/App.js</sub>
+```js
+import React, { Component } from 'react';
+import './App.css';
+
+//...
+import TitledImage from './TitledImage';
+
+class App extends Component {
+  //...
+  
+  render(){
+    return (
+      <div>
+        //...
+        <TitledImage imgSrc='https://maksimivanov.com/static/state_vs_props-8a0bbd9513656646d76db1f636c06db0-ef9ea.png'
+                     title='Props and State' />
+      </div>
+    );
+  }
+}
+
+export default App;
+```
+
+5. `$ touch ./src/VersusImages.js`
+
+<sub>./src/VersusImages.js</sub>
+```js
+import React, { Component } from 'react';
+
+class VersusImages extends Component {
+  render(){
+    return (
+      <div>
+        <img src={this.props.imgSrcs[0]}/>
+        vs.
+        <img src={this.props.imgSrcs[1]}/>
+      </div>
+    );
+  }
+}
+
+export default VersusImages;
+```
+
+<sub>./src/App.js</sub>
+```js
+import React, { Component } from 'react';
+import './App.css';
+
+//...
+import VersusImages from './VersusImages';
+
+class App extends Component {
+  //...
+  
+  render(){
+    return (
+      <div>
+        //...
+        <VersusImages imgSrc={[
+          'https://vignette.wikia.nocookie.net/simpsons/images/8/80/Drederick_tatum_tapped_out.png',
+          'https://i.pinimg.com/originals/b0/5b/83/b05b8334bf4502c675f741059b5b3eb8.gif',
+        ]} />
+      </div>
+    );
+  }
+}
+
+export default App;
+```
 
 
 
