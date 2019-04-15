@@ -648,6 +648,265 @@ that was fun! Now we can rewrite all of our function examples as Components...
 
 
 
+### solutions
+
+1. `$ touch ./src/Joke.js`
+
+<sub>./src/Joke.js</sub>
+```js
+import React, { Component } from 'react';
+
+class Joke extends Component {
+
+  logClick = ()=> console.log('my girlfriend called, she said "come over, noone\'s home. I went over, noone was home!')
+
+  render(){
+    return (
+      <div onClick={this.logClick}>click me I dare you</div>
+    );
+  }
+}
+
+export default Joke;
+```
+
+<sub>./src/App.js</sub>
+```js
+import React, { Component } from 'react';
+import BirdWord from './BirdWord';
+import Joke from './Joke';
+
+class App extends Component {
+
+  render(){
+    return (
+      <div>
+        <BirdWord />
+        <Joke />
+      </div>
+    );
+  }
+}
+
+export default App;
+```
+
+
+2. `$ touch ./src/Alarm.js`
+
+<sub>./src/Alarm.js</sub>
+```js
+import React, { Component } from 'react';
+
+class Alarm extends Component {
+
+  alertClick = ()=> alert('clicked!')
+
+  render(){
+    return (
+      <div onClick={this.alertClick}>click me I dare you</div>
+    );
+  }
+}
+
+export default Alarm;
+```
+
+<sub>./src/App.js</sub>
+```js
+import React, { Component } from 'react';
+import BirdWord from './BirdWord';
+import Joke from './Joke';
+import Alarm from './Alarm';
+
+class App extends Component {
+
+  render(){
+    return (
+      <div>
+        <BirdWord />
+        <Joke />
+        <Alarm />
+      </div>
+    );
+  }
+}
+
+export default App;
+```
+
+3. `$ touch ./src/LastSeen.js`
+
+<sub>./src/LastSeen.js</sub>
+```js
+import React, { Component } from 'react';
+
+class LastSeen extends Component {
+
+  state = { lastClickTime: null }
+
+  recordClickTime = ()=> this.setState({ lastClickTime: (new Date()).toString() })
+
+  render(){
+    return (
+      <div>
+        <div onClick={this.recordClickTime}>click me I dare you</div>
+        <div>{this.state.lastClickTime}</div>
+      </div>
+    );
+  }
+}
+
+export default LastSeen;
+```
+
+<sub>./src/App.js</sub>
+```js
+import React, { Component } from 'react';
+import BirdWord from './BirdWord';
+import Joke from './Joke';
+import Alarm from './Alarm';
+import LastSeen from './LastSeen';
+
+class App extends Component {
+
+  render(){
+    return (
+      <div>
+        <BirdWord />
+        <Joke />
+        <Alarm />
+        <LastSeen />
+      </div>
+    );
+  }
+}
+
+export default App;
+```
+
+
+4. `$ touch ./src/LastSeen.js`
+
+<sub>./src/LastSeen.js</sub>
+```js
+import React, { Component } from 'react';
+
+class LastSeen extends Component {
+
+  state = { lastClickTime: null }
+
+  recordClickTime = ()=> this.setState({ lastClickTime: (new Date()).toString() })
+
+  render(){
+    return (
+      <div>
+        <div onClick={this.recordClickTime}>click me I dare you</div>
+        <div>{this.state.lastClickTime}</div>
+      </div>
+    );
+  }
+}
+
+export default LastSeen;
+```
+
+<sub>./src/App.js</sub>
+```js
+import React, { Component } from 'react';
+import BirdWord from './BirdWord';
+import Joke from './Joke';
+import Alarm from './Alarm';
+import LastSeen from './LastSeen';
+
+class App extends Component {
+
+  render(){
+    return (
+      <div>
+        <BirdWord />
+        <Joke />
+        <Alarm />
+        <LastSeen />
+      </div>
+    );
+  }
+}
+
+export default App;
+```
+
+
+5. `$ touch ./src/DayNightToggle.js`
+
+<sub>./src/DayNightToggle.js</sub>
+```js
+import React, { Component } from 'react';
+import './DayNightToggle.css';
+
+class DayNightToggle extends Component {
+
+  state = { isDayMode: true }
+
+  toggleDayMode = ()=> this.setState(state => ({ isDayMode: !state.isDayMode }) )
+
+  render(){
+    return (
+      <div className={this.state.isDayMode ? 'day' : 'night'}>
+        <div onClick={this.toggleDayMode}>click me I dare you</div>
+      </div>
+    );
+  }
+}
+
+export default DayNightToggle;
+```
+
+`$ touch ./src/DayNightToggle.css`
+
+<sub>./src/DayNightToggle.css</sub>
+```css
+.day {
+  background-color: white;
+  color: black;
+}
+
+.night {
+  background-color: black;
+  color: white;
+}
+```
+
+
+<sub>./src/App.js</sub>
+```js
+import React, { Component } from 'react';
+import BirdWord from './BirdWord';
+import Joke from './Joke';
+import Alarm from './Alarm';
+import LastSeen from './LastSeen';
+import DayNightToggle from './DayNightToggle';
+
+class App extends Component {
+
+  render(){
+    return (
+      <div>
+        <BirdWord />
+        <Joke />
+        <Alarm />
+        <LastSeen />
+        <DayNightToggle />
+      </div>
+    );
+  }
+}
+
+export default App;
+```
+
+
+
 
 ## rendering props
 
