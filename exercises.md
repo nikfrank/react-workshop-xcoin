@@ -1746,10 +1746,59 @@ refactor the child Component to be a functional component
 
 ## user input
 
-The last topic we need to cover for this workshop is the basic flow for user inputs ...
+The last topic we need to cover for this workshop is the basic flow for user inputs. React has [one direction of data flow](https://medium.embengineering.com/in-react-js-data-flows-in-one-direction-from-parent-to-child-841103ed3aed): your Component tells the input what its current value is, and what function to call when it thinks it wants to change (eg. the user typed or picked a different option)
+
+What does that look like?
+
+<sub>./src/App.js</sub>
+```js
+import React, { Component } from 'react';
+import './App.css';
+
+class App extends Component {
+  state = { name: '' }
+
+  onNameChange = event => this.setState({ name: event.target.value })
+
+  render(){
+    return (
+      <input value={this.state.name} onChange={this.onNameChange} placeholder='Type Name Here'/>
+    );
+  }
+}
+
+export default App;
+```
 
 This pattern is called [controlled input](https://reactjs.org/docs/forms.html)
 
+we will cover this more in depth in the next Application (Snoop Jobs) - it is important here to understand the basic mechanic only.
+
+### exercises
+
+1. follow the example to make an `<input/>` for a string state value
+
+2. apply `type='number'` to the `<input/>` to make our `event.target.value` a number. Change the variable name to make sense!
+
+3. apply `type='checkbox'` to the `<input/>` to make our event.target.value a boolean. Change the variable name to make sense!
+
+
+### solutions
+
+<details>
+<summary>Click here to view solutions for this section</summary>
+
+
+1.
+
+2.
+
+3.
+
+
+</details>
+
+---
 
 
 ## done
