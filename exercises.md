@@ -1575,12 +1575,48 @@ Let's see what that looks like:
 
 <sub>./src/App.js</sub>
 ```js
+import React, { Component } from 'react';
+import './App.css';
 
+import BirdWord from './BirdWord';
+
+class App extends Component {
+  state = { word: 'bird' }
+
+  setWord = word => this.setState({ word })
+
+  render(){
+    return (
+      <BirdWord word={this.state.word} onUpdate={this.setWord} />
+    );
+  }
+}
+
+export default App;
 ```
 
 <sub>./src/BirdWord.js</sub>
 ```js
+import React, { Component } from 'react';
 
+class BirdWord extends Component {
+  askIfYouveHeard = ()=> {
+    console.log('have you heard that the ', this.props.word, ' is the word?');
+  }
+
+  changeToFrench = ()=> this.props.onUpdate('oiseau')
+
+  render(){
+    return (
+      <div>
+        <div onClick={this.askIfYouveHeard}>{this.props.word}</div>
+        <button onClick={this.changeToFrench}>Quoi?</button>
+      </div>
+    );
+  }
+}
+
+export default BirdWord;
 ```
 
 We now achieved "Separation of Concerns" by putting all of the view logic in the child Component, and all of the state management logic in the Parent Component.
@@ -1630,21 +1666,27 @@ Now that we took all of the state logic and instance methods out of our child Co
 
 And so, we will be able to write *just* a render function
 
+<sub>./src/BirdWord.js</sub>
 ```js
 import React, { Component } from 'react';
+
+const askIfYouveHeard = word=> console.log('have you heard that the ', word, ' is the word?');
 
 class BirdWord extends Component {
   render(){
     return (
       <div>
-        //...
+        <div onClick={()=> askIfYouveHeard(this.props.word)}>{this.props.word}</div>
+        <button onClick={()=> this.props.onUpdate('oiseau')}>Quoi?</button>
       </div>
     );
   }
-};
+}
 
 export default BirdWord;
 ```
+
+(here we're using the "baking it in" pattern to pass our argument `this.props.word` to a function call `()=> askIfYouveHeard(this.props.word)`)
 
 so that `class` notation seems a bit clunky now eh?
 
@@ -1654,16 +1696,21 @@ which let's us write just the render function, taking `props` as a parameter
 
 we can rewrite our example as
 
+<sub>./src/BirdWord.js</sub>
 ```js
 import React from 'react';
 
-export default (props)=> (
+const askIfYouveHeard = word=> console.log('have you heard that the ', word, ' is the word?');
+
+const BirdWord = (props)=> (
   <div>
-    //...
+    <div onClick={()=> askIfYouveHeard(props.word)}>{props.word}</div>
+    <button onClick={()=> props.onUpdate('oiseau')}>Quoi?</button>
   </div>
 );
-```
 
+export default BirdWord;
+```
 
 now we can convert all of our Components to this (improved) style
 
