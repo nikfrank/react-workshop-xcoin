@@ -2,7 +2,7 @@
 
 these exercises can be done in an off-the-shelf create-react-app
 
-if you haven't already, follow out the [getting started instructions](/#getting-started) to get that running
+if you haven't already, follow out the [getting started instructions](https://github.com/nikfrank/react-workshop-xcoin/#getting-started) to get that running
 
 
 ## rendering basics
