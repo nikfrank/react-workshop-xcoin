@@ -11,6 +11,9 @@ react at heart is just a view library, with which we render [JSX](https://reactj
 
 JSX is just javascript flavoured HTML, so first thing's first: let's practice rendering HTML through react
 
+
+### exercises
+
 in <sub>./src/App.js</sub> let's render a
 
 1. `<div/>` with some text
@@ -110,6 +113,9 @@ so that was all pretty much the same as plain old HTML, let's get to the good st
 here, we want to use [breakouts](https://reactjs.org/docs/introducing-jsx.html#embedding-expressions-in-jsx) to render javascript values into the page
 
 once were inside the breakouts, we can write any [javascript expression](https://www.google.com/search?q=javascript+expression)
+
+
+### exercises
 
 let's practice rendering into a breakout a
 
@@ -250,6 +256,9 @@ update the `render` function to
 all of those HTML elements are ugly like 1996. Let's apply some CSS classes and rules to our elements to achieve web beauty.
 
 react has two main ways to apply CSS: [className](https://reactjs.org/docs/faq-styling.html) and [style prop](https://reactjs.org/docs/dom-elements.html#style) here we will practice both.
+
+
+### exercises
 
 ./src/App.js already does `import './App.css';`, so we can write our CSS into ./src/App.css 
 
@@ -420,6 +429,8 @@ then `render` is a special case react lifecycle function which gives us the `thi
 
 now we want to write a bunch of instance methods, and use an `onClick` prop to bind the instance method to user click events.
 
+
+### exercises
 
 1. use an instance method to log a joke to the console on user click
 
@@ -633,6 +644,7 @@ export default App;
 that was fun! Now we can rewrite all of our function examples as Components...
 
 
+### exercises
 
 1. write a Component in its own file that logs a joke to the console on user click
 
@@ -956,11 +968,177 @@ class App extends Component {
 export default App;
 ```
 
-Great! 
+
+### exercises
+
+1. 2. 3.
+
+
+### solutions
 
 
 
 
+## props that change
 
 
-[Functional Components](https://www.robinwieruch.de/react-function-component/)
+Great! Usually though, we're going to keep our `state` in the Parent Component, and pass the values through `props` to the smaller Components
+
+This pattern is called [Lifting State Up](https://reactjs.org/docs/lifting-state-up.html) and is an officially promoted pattern!
+
+Let's see what that looks like:
+
+
+<sub>./src/App.js</sub>
+```js
+import React, { Component } from 'react';
+import BirdWord from './BirdWord';
+
+class App extends Component {
+
+  state = { word: 'bird' }
+
+  render(){
+    return (
+      <BirdWord word={this.state.word} />
+    );
+  }
+}
+
+export default App;
+```
+
+now that the prop value is a javascript variable, we need to use the `{}` breakouts to evaluate it (earlier we saw a string, which we can just write like an oldschool HTML attribute)
+
+Why would we do that? good question; the reason is that the `state` value might change! when it does we'll want to the new value sent to our prop right away
+
+React does that for us: [when we update the state, React will update that Component and its children](https://reactjs.org/docs/react-component.html#setstate)
+
+and what would that look like?
+
+
+<sub>./src/App.js</sub>
+```js
+import React, { Component } from 'react';
+import BirdWord from './BirdWord';
+
+class App extends Component {
+
+  state = { word: 'bird' }
+
+  setNewWord = ()=> this.setState({ word: 'oiseau' })
+
+  render(){
+    return (
+      <div>
+        <button onClick={this.setNewWord}>Change the Word</button>
+        <BirdWord word={this.state.word} />
+      </div>
+    );
+  }
+}
+
+export default App;
+```
+
+This is a sneak preview of passing a `function` as a `prop` (`this.setNewWord` is a function, passed into the `onClick` `prop`), which we'll cover in the next set of exercises.
+
+
+### exercises
+
+1. 2. 3.
+
+
+### solutions
+
+
+
+
+## function props
+
+When we have our `state` in a Parent Component, we need our `setState` calls to be in the Parent Component (obviously). But what if we want our child Component to trigger the update?
+
+To do that, we can make the function with the `setState` call in the Parent Component, and pass that function to the child Component as a prop
+
+Let's see what that looks like:
+
+<sub>./src/App.js</sub>
+```js
+
+```
+
+<sub>./src/BirdWord.js</sub>
+```js
+
+```
+
+We now achieved "Separation of Concerns" by putting all of the view logic in the child Component, and all of the state management logic in the Parent Component.
+
+This pattern will allow us to treat our child Components like the simple view bindings they really are (in the next section)
+
+Let's practice:
+
+### exercises
+
+1. 2. 3.
+
+### solutions
+
+
+
+## function Components
+
+Now that we took all of the state logic and instance methods out of our child Components, there's nothing left that uses the `this` keyword!
+
+And so, we will be able to write *just* a render function
+
+```js
+import React, { Component } from 'react';
+
+class BirdWord extends Component {
+  render(){
+    return (
+      <div>
+        //...
+      </div>
+    );
+  }
+};
+
+export default BirdWord;
+```
+
+so that `class` notation seems a bit clunky now eh?
+
+the good people at React thought the same thing, so they gave us [Functional Components](https://www.robinwieruch.de/react-function-component/)
+
+which let's us write just the render function, taking `props` as a parameter
+
+we can rewrite our example as
+
+```js
+import React from 'react';
+
+export default (props)=> (
+  <div>
+    //...
+  </div>
+);
+```
+
+
+now we can convert all of our Components to this (improved) style
+
+### exercises
+
+1. 2. 3.
+
+### solutions
+
+
+
+## user input
+
+The last topic we need to cover for this workshop is the basic flow for user inputs ...
+
+This pattern is called [controlled input](https://reactjs.org/docs/forms.html)
