@@ -29,6 +29,9 @@ in <sub>./src/App.js</sub> let's render a
 
 ### solutions
 
+<details>
+<summary>Click here to view solutions for this section</summary>
+
 1. update the `render` function to
 
 ```js
@@ -104,6 +107,7 @@ take note! the self closing / at the end is REQUIRED in JSX (it was optional in 
 
 (leaving everything else the same)
 
+</details>
 
 
 ## rendering javascript values
@@ -1380,7 +1384,7 @@ class App extends Component {
     return (
       <div>
         //...
-        <button onClick={this.halveAmounts}>that's too much, I want to pay half that much</button>
+        <button onClick={this.halveAmounts}>that costs too much, I want to pay half that much</button>
         <YearlyPayments amounts={this.state.amounts} />
       </div>
     );
