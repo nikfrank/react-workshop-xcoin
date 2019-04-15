@@ -971,10 +971,28 @@ export default App;
 
 ### exercises
 
-1. 2. 3.
+1. pass a Number as a prop to a Component to render
+
+2. pass an Array as a prop to a Component to render
+
+3. pass an Object with a String field like `{ name: 'nik' }` to a Component to render
+
+4. pass a url for an image as a prop to a Component, render the correct image
+
+5. pass an Array of image urls as a prop for a Component to render (each separately)
 
 
 ### solutions
+
+1.
+
+2.
+
+3.
+
+4.
+
+5.
 
 
 
@@ -1046,10 +1064,27 @@ This is a sneak preview of passing a `function` as a `prop` (`this.setNewWord` i
 
 ### exercises
 
-1. 2. 3.
+in each of your solutions from the previous section,
+
+store the value in `state`
+
+write an instance method + button which will allow you to change the prop
+
+then see that react updates the child Component for you
+
 
 
 ### solutions
+
+1.
+
+2.
+
+3.
+
+4.
+
+5.
 
 
 
@@ -1080,9 +1115,29 @@ Let's practice:
 
 ### exercises
 
-1. 2. 3.
+in each of your solutions from the previous section,
+
+move the `<button/>` to the child Component
+
+pass the instance method (function) as a `prop` to the Component
+
+call the prop function from the `<button/>`'s `onClick`
+
+(that's called "refactoring")
+
 
 ### solutions
+
+1.
+
+2.
+
+3.
+
+4.
+
+5.
+
 
 
 
@@ -1131,9 +1186,22 @@ now we can convert all of our Components to this (improved) style
 
 ### exercises
 
-1. 2. 3.
+in each of your solutions from the previous section,
+
+refactor the child Component to be a functional component
+
 
 ### solutions
+
+1.
+
+2.
+
+3.
+
+4.
+
+5.
 
 
 
