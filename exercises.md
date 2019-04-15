@@ -627,6 +627,8 @@ to render it out now, let's import it in ./src/App.js
 <sub>./src/App.js</sub>
 ```js
 import React, { Component } from 'react';
+import './App.css';
+
 import BirdWord from './BirdWord';
 
 class App extends Component {
@@ -685,6 +687,8 @@ export default Joke;
 <sub>./src/App.js</sub>
 ```js
 import React, { Component } from 'react';
+import './App.css';
+
 import BirdWord from './BirdWord';
 import Joke from './Joke';
 
@@ -727,6 +731,8 @@ export default Alarm;
 <sub>./src/App.js</sub>
 ```js
 import React, { Component } from 'react';
+import './App.css';
+
 import BirdWord from './BirdWord';
 import Joke from './Joke';
 import Alarm from './Alarm';
@@ -775,6 +781,8 @@ export default LastSeen;
 <sub>./src/App.js</sub>
 ```js
 import React, { Component } from 'react';
+import './App.css';
+
 import BirdWord from './BirdWord';
 import Joke from './Joke';
 import Alarm from './Alarm';
@@ -826,6 +834,8 @@ export default LastSeen;
 <sub>./src/App.js</sub>
 ```js
 import React, { Component } from 'react';
+import './App.css';
+
 import BirdWord from './BirdWord';
 import Joke from './Joke';
 import Alarm from './Alarm';
@@ -893,6 +903,8 @@ export default DayNightToggle;
 <sub>./src/App.js</sub>
 ```js
 import React, { Component } from 'react';
+import './App.css';
+
 import BirdWord from './BirdWord';
 import Joke from './Joke';
 import Alarm from './Alarm';
@@ -954,6 +966,8 @@ now that we're using `this.props.word`, we'll need to have set it from ./src/App
 <sub>./src/App.js</sub>
 ```js
 import React, { Component } from 'react';
+import './App.css';
+
 import BirdWord from './BirdWord';
 
 class App extends Component {
@@ -971,22 +985,118 @@ export default App;
 
 ### exercises
 
-1. pass a Number as a prop to a Component to render
+1. pass a Number as a prop to a new Component to render
 
-2. pass an Array as a prop to a Component to render
+2. pass an Array as a prop to a new Component to render
 
-3. pass an Object with a String field like `{ name: 'nik' }` to a Component to render
+3. pass an Object with a String field like `{ name: 'nik' }` to a new Component to render
 
-4. pass a url for an image as a prop to a Component, render the correct image
+4. pass a url for an image as a prop to a new Component, render the correct image
 
-5. pass an Array of image urls as a prop for a Component to render (each separately)
+5. pass an Array of image urls as a prop for a new Component to render (each separately)
 
 
 ### solutions
 
-1.
+1. `$ touch ./src/Price.js`
 
-2.
+<sub>./src/Price.js</sub>
+```js
+import React, { Component } from 'react';
+
+class Price extends Component {
+  render(){
+    return (
+      <div> $ { this.props.amount } </div>
+    );
+  }
+}
+
+export default Price;
+```
+
+<sub>./src/App.js</sub>
+```js
+import React, { Component } from 'react';
+import './App.css';
+
+//...
+import Price from './Price';
+
+class App extends Component {
+  //...
+  
+  render(){
+    return (
+      <div>
+        //...
+        <Price amount={3.50} />
+      </div>
+    );
+  }
+}
+
+export default App;
+```
+
+
+2. `$ touch ./src/YearlyPayments.js`
+
+<sub>./src/YearlyPayments.js</sub>
+```js
+import React, { Component } from 'react';
+
+class YearlyPayments extends Component {
+  render(){
+    return (
+      <ul>
+        <li> January: $ { this.props.amounts[0] } </li>
+        <li> February: $ { this.props.amounts[1] } </li>
+        <li> March: $ { this.props.amounts[2] } </li>
+        <li> April: $ { this.props.amounts[3] } </li>
+        <li> May: $ { this.props.amounts[4] } </li>
+        <li> June: $ { this.props.amounts[5] } </li>
+        <li> July: $ { this.props.amounts[6] } </li>
+        <li> August: $ { this.props.amounts[7] } </li>
+        <li> September: $ { this.props.amounts[8] } </li>
+        <li> October: $ { this.props.amounts[9] } </li>
+        <li> November: $ { this.props.amounts[10] } </li>
+        <li> December: $ { this.props.amounts[11] } </li>
+      </ul>
+    );
+  }
+}
+
+export default YearlyPayments;
+```
+
+<sub>./src/App.js</sub>
+```js
+import React, { Component } from 'react';
+import './App.css';
+
+//...
+import YearlyPayments from './YearlyPayments';
+
+class App extends Component {
+  //...
+  
+  render(){
+    return (
+      <div>
+        //...
+        <YearlyPayments amounts={[ 3.50, 10.22, 0.56,
+                                   0.78, 9.99, 11.35,
+                                   19.72, 35.01, 109.14,
+                                   6.21, 8.31, 11.75 ]} />
+      </div>
+    );
+  }
+}
+
+export default App;
+```
+
 
 3.
 
@@ -1038,6 +1148,8 @@ and what would that look like?
 <sub>./src/App.js</sub>
 ```js
 import React, { Component } from 'react';
+import './App.css';
+
 import BirdWord from './BirdWord';
 
 class App extends Component {
@@ -1210,3 +1322,9 @@ refactor the child Component to be a functional component
 The last topic we need to cover for this workshop is the basic flow for user inputs ...
 
 This pattern is called [controlled input](https://reactjs.org/docs/forms.html)
+
+
+
+## done
+
+now that you're done all the exercises, you're definitely ready to do the workshop (and understand what you're doing while you do it!)
