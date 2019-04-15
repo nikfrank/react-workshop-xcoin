@@ -1623,7 +1623,7 @@ export default BirdWord;
 
 We now achieved "Separation of Concerns" by putting all of the view logic in the child Component, and all of the state management logic in the Parent Component.
 
-This pattern will allow us to treat our child Components like the simple view bindings they really are (in the next section)
+This pattern will allow us to treat our Components as the "single source of truth" for their domain logic. If you have a question about that Component, it will be answered in that file (the Parent Component maintains control without becoming complex)
 
 And it allowed us to easily add a feature (Italian) to our Component.
 
@@ -1652,13 +1652,324 @@ call the prop function from the `<button/>`'s `onClick`
 
 1.
 
+<sub>./src/Price.js</sub>
+```js
+import React, { Component } from 'react';
+
+class Price extends Component {
+
+  double = ()=> this.props.onUpdate(this.props.amount * 2)
+  triple = ()=> this.props.onUpdate(this.props.amount * 3)
+
+  render(){
+    return (
+      <div>
+        <button onClick={this.double}>Double</button>
+        <button onClick={this.triple}>Triple</button>
+        <div> $ { this.props.amount } </div>
+      </div>
+    );
+  }
+}
+
+export default Price;
+```
+
+<sub>./src/App.js</sub>
+```js
+import React, { Component } from 'react';
+import './App.css';
+
+//...
+import Price from './Price';
+
+class App extends Component {
+  state = {
+    //...
+    amount: 3.5,
+  }
+
+  updateAmount = amount=> this.setState({ amount })
+
+  //...
+  
+  render(){
+    return (
+      <div>
+        //...
+        <Price amount={this.state.amount} onUpdate={this.updateAmount} />
+      </div>
+    );
+  }
+}
+
+export default App;
+```
+
+
 2.
+
+<sub>./src/YearlyPayments.js</sub>
+```js
+import React, { Component } from 'react';
+
+class YearlyPayments extends Component {
+
+  double = ()=> this.props.onUpdate(this.props.amounts.map(a=> a * 2))
+  halve = ()=> this.props.onUpdate(this.props.amounts.map(a=> a / 2))
+
+  render(){
+    return (
+      <div>
+        <button onClick={this.double}>Double</button>
+        <button onClick={this.halve}>Halve</button>
+        
+        <ul>
+          <li> January: $ { this.props.amounts[0] } </li>
+          <li> February: $ { this.props.amounts[1] } </li>
+          <li> March: $ { this.props.amounts[2] } </li>
+          <li> April: $ { this.props.amounts[3] } </li>
+          <li> May: $ { this.props.amounts[4] } </li>
+          <li> June: $ { this.props.amounts[5] } </li>
+          <li> July: $ { this.props.amounts[6] } </li>
+          <li> August: $ { this.props.amounts[7] } </li>
+          <li> September: $ { this.props.amounts[8] } </li>
+          <li> October: $ { this.props.amounts[9] } </li>
+          <li> November: $ { this.props.amounts[10] } </li>
+          <li> December: $ { this.props.amounts[11] } </li>
+        </ul>
+      </div>
+    );
+  }
+}
+
+export default YearlyPayments;
+```
+
+<sub>./src/App.js</sub>
+```js
+import React, { Component } from 'react';
+import './App.css';
+
+//...
+import YearlyPayments from './YearlyPayments';
+
+class App extends Component {
+  state = {
+    //...
+    amounts: [ 3.50, 10.22, 0.56,
+               0.78, 9.99, 11.35,
+               19.72, 35.01, 109.14,
+               6.21, 8.31, 11.75 ],
+  }
+  
+  updateAmounts = amounts=> this.setState({ amounts })
+
+  //...
+
+  render(){
+    return (
+      <div>
+        //...
+        <YearlyPayments amounts={this.state.amounts} onUpdate={this.updateAmounts} />
+      </div>
+    );
+  }
+}
+
+export default App;
+```
+
+[read up on Array.map it's very powerful!](https://www.google.com/search?q=array+map)
+
 
 3.
 
+<sub>./src/NameTag.js</sub>
+```js
+import React, { Component } from 'react';
+
+class NameTag extends Component {
+
+  uncoverSecretIdentity = ()=> this.props.onUpdate({ first: 'the amazing', last: 'spiderman' })
+
+  render(){
+    return (
+      <div>
+        <div> {this.props.name.last}, {this.props.name.first} </div>
+        <button onClick={this.uncoverSecretIdentity}>who is peter parker?</button>
+      </div>
+    );
+  }
+}
+
+export default NameTag;
+```
+
+
+<sub>./src/App.js</sub>
+```js
+import React, { Component } from 'react';
+import './App.css';
+
+//...
+import NameTag from './NameTag';
+
+class App extends Component {
+  state = {
+    //...
+    name: { first: 'peter', last: 'parker' },
+  }
+
+  updateName = name=> this.setState({ name })
+  
+  //...
+
+  render(){
+    return (
+      <div>
+        //...
+        <NameTag name={this.state.name} onUpdate={this.updateName} />
+      </div>
+    );
+  }
+}
+
+export default App;
+```
+
+
+
 4.
 
+<sub>./src/TitledImage.js</sub>
+```js
+import React, { Component } from 'react';
+
+class TitledImage extends Component {
+
+  render(){
+    return (
+      <div>
+        <img src={this.props.imgSrc} onClick={this.props.onNext}/>
+        <h3>{this.props.title}</h3>
+      </div>
+    );
+  }
+}
+
+export default TitledImage;
+```
+
+
+<sub>./src/App.js</sub>
+```js
+import React, { Component } from 'react';
+import './App.css';
+
+//...
+import TitledImage from './TitledImage';
+
+class App extends Component {
+  state = {
+    //...
+    imgSrc: 'https://maksimivanov.com/static/state_vs_props-8a0bbd9513656646d76db1f636c06db0-ef9ea.png',
+    imageTitle: 'Props and State',
+
+    
+    nextImgSrc: 'https://cdn-images-1.medium.com/max/1600/1*pGx4m8PKCXw0lRdwdCeRSg@2x.jpeg',
+    nextImageTitle: 'setState can use an updater pattern',
+  }
+
+  nextSlide = ()=> this.setState({ imgSrc: this.state.nextImgSrc, imageTitle: this.state.nextImageTitle })
+  
+  //...
+
+  render(){
+    return (
+      <div>
+        //...
+        <TitledImage imgSrc={this.state.imgSrc}
+                     title={this.state.imageTitle}
+                     onNext={this.onNext} />
+      </div>
+    );
+  }
+}
+
+export default App;
+```
+
+if we were making a real slideshow Component, we'd probably have an Array full of objects to cycle through!
+
+I may have broken the rules a bit with this answer. **It was to teach you how to break the rules!**
+
 5.
+
+<sub>./src/VersusImages.js</sub>
+```js
+import React, { Component } from 'react';
+
+class VersusImages extends Component {
+  render(){
+    return (
+      <div>
+        <img src={this.props.imgSrcs[0]}/>
+        vs.
+        <img src={this.props.imgSrcs[1]}/>
+        <button onClick={this.props.nextFight}>Show me the next fighters</button>
+      </div>
+    );
+  }
+}
+
+export default VersusImages;
+```
+
+
+<sub>./src/App.js</sub>
+```js
+import React, { Component } from 'react';
+import './App.css';
+
+//...
+import VersusImages from './VersusImages';
+
+class App extends Component {
+  state = {
+    //...
+    imgSrcs: [
+      'https://vignette.wikia.nocookie.net/simpsons/images/8/80/Drederick_tatum_tapped_out.png',
+      'https://i.pinimg.com/originals/b0/5b/83/b05b8334bf4502c675f741059b5b3eb8.gif',
+      'https://upload.wikimedia.org/wikipedia/en/thumb/3/3b/SpongeBob_SquarePants_character.svg/220px-SpongeBob_SquarePants_character.svg.png',
+      'https://upload.wikimedia.org/wikipedia/en/thumb/8/8f/Squidward_Tentacles.svg/220px-Squidward_Tentacles.svg.png',
+    ],
+
+    currentFighters: [0, 1],
+  }
+
+  nextFight = ()=> this.setState({
+    currentFighters: [
+      Math.floor( Math.random()*this.state.imgSrcs.length ),
+      Math.floor( Math.random()*this.state.imgSrcs.length ),
+    ]
+  })
+  
+  render(){
+    return (
+      <div>
+        //...
+        <VersusImages imgSrcs={this.state.currentFighters.map(f => this.state.imgSrcs[f])}
+                      nextFight={this.nextFight} />
+      </div>
+    );
+  }
+}
+
+export default App;
+```
+
+read more about [Math.floor](https://www.google.com/search?q=js+Math+floor) [Math.random](js+Math+random) and [Array.map](https://www.google.com/search?q=array+map)
 
 </details>
 
