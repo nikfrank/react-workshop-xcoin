@@ -1286,12 +1286,12 @@ class App extends Component {
 
   state = { word: 'bird' }
 
-  setNewWord = ()=> this.setState({ word: 'oiseau' })
+  makeWordFrench = ()=> this.setState({ word: 'oiseau' })
 
   render(){
     return (
       <div>
-        <button onClick={this.setNewWord}>Change the Word</button>
+        <button onClick={this.makeWordFrench}>Change the Word</button>
         <BirdWord word={this.state.word} />
       </div>
     );
@@ -1301,14 +1301,14 @@ class App extends Component {
 export default App;
 ```
 
-This is a sneak preview of passing a `function` as a `prop` (`this.setNewWord` is a function, passed into the `onClick` `prop`), which we'll cover in the next set of exercises.
+This is a sneak preview of passing a `function` as a `prop` (`this.makeWordFrench` is a function, passed into the `onClick` `prop`), which we'll cover in the next set of exercises.
 
 
 ### exercises
 
 in each of your solutions from the previous section,
 
-store the value in `state`
+store the value in `state` in ./src/App.js
 
 write an instance method + button which will allow you to change the prop
 
@@ -1318,15 +1318,195 @@ then see that react updates the child Component for you
 
 ### solutions
 
-1.
+1. (leaving ./src/Price.js the same)
 
-2.
+<sub>./src/App.js</sub>
+```js
+import React, { Component } from 'react';
+import './App.css';
 
-3.
+//...
+import Price from './Price';
 
-4.
+class App extends Component {
+  state = {
+    //...
+    amount: 3.5,
+  }
 
-5.
+  doubleAmount = ()=> this.setState({ amount: this.state.amount * 2 })
+
+  //...
+  
+  render(){
+    return (
+      <div>
+        //...
+        <button onClick={this.doubleAmount}>Double</button
+        <Price amount={this.state.amount} />
+      </div>
+    );
+  }
+}
+
+export default App;
+```
+
+
+2. (leaving ./src/YearlyPayments.js the same)
+
+<sub>./src/App.js</sub>
+```js
+import React, { Component } from 'react';
+import './App.css';
+
+//...
+import YearlyPayments from './YearlyPayments';
+
+class App extends Component {
+  state = {
+    //...
+    amounts: [ 3.50, 10.22, 0.56,
+               0.78, 9.99, 11.35,
+               19.72, 35.01, 109.14,
+               6.21, 8.31, 11.75 ],
+  }
+  
+  halveAmounts = ()=> this.setState({ amounts: this.state.amounts.map(a => a/2) })
+
+  //...
+
+  render(){
+    return (
+      <div>
+        //...
+        <button onClick={this.halveAmounts}>that's too much, I want to pay half that much</button>
+        <YearlyPayments amounts={this.state.amounts} />
+      </div>
+    );
+  }
+}
+
+export default App;
+```
+
+[read up on Array.map it's very powerful!](https://www.google.com/search?q=array+map)
+
+
+3. (leaving ./src/NameTag.js the same)
+
+<sub>./src/App.js</sub>
+```js
+import React, { Component } from 'react';
+import './App.css';
+
+//...
+import NameTag from './NameTag';
+
+class App extends Component {
+  state = {
+    //...
+    name: { first: 'peter', last: 'parker' },
+  }
+
+  uncoverSecretIdentity = ()=> this.setState({ name: { first: 'the amazing', last: 'spiderman' } })
+  
+  //...
+
+  render(){
+    return (
+      <div>
+        //...
+        <button onClick={this.uncoverSecretIdentity}>who is it?</button>
+        <NameTag name={this.state.name} />
+      </div>
+    );
+  }
+}
+
+export default App;
+```
+
+
+
+4. (leaving ./src/TitledImage.js the same)
+
+<sub>./src/App.js</sub>
+```js
+import React, { Component } from 'react';
+import './App.css';
+
+//...
+import TitledImage from './TitledImage';
+
+class App extends Component {
+  state = {
+    //...
+    imgSrc: 'https://maksimivanov.com/static/state_vs_props-8a0bbd9513656646d76db1f636c06db0-ef9ea.png',
+    imageTitle: 'Props and State',
+  }
+
+  nextSlide = ()=> this.setState({
+    imgSrc: 'https://cdn-images-1.medium.com/max/1600/1*pGx4m8PKCXw0lRdwdCeRSg@2x.jpeg',
+    imageTitle: 'setState can use an updater pattern',
+  })
+  
+  //...
+
+  render(){
+    return (
+      <div>
+        //...
+        <button onClick={this.nextSlide}>NEXT</button>
+        <TitledImage imgSrc={this.state.imgSrc}
+                     title={this.state.imageTitle} />
+      </div>
+    );
+  }
+}
+
+export default App;
+```
+
+5. (leaving ./src/VersusImages.js the same)
+
+<sub>./src/App.js</sub>
+```js
+import React, { Component } from 'react';
+import './App.css';
+
+//...
+import VersusImages from './VersusImages';
+
+class App extends Component {
+  state = {
+    //...
+    imgSrcs: [
+      'https://vignette.wikia.nocookie.net/simpsons/images/8/80/Drederick_tatum_tapped_out.png',
+      'https://i.pinimg.com/originals/b0/5b/83/b05b8334bf4502c675f741059b5b3eb8.gif',    
+    ],
+  }
+
+  nextFight = ()=> this.setState({
+    imgSrcs: [
+      'https://upload.wikimedia.org/wikipedia/en/thumb/3/3b/SpongeBob_SquarePants_character.svg/220px-SpongeBob_SquarePants_character.svg.png',
+      'https://upload.wikimedia.org/wikipedia/en/thumb/8/8f/Squidward_Tentacles.svg/220px-Squidward_Tentacles.svg.png',
+    ],
+  })
+  
+  render(){
+    return (
+      <div>
+        //...
+        <button onClick={this.nextFight}>Show me the next fighters</button>
+        <VersusImages imgSrcs={this.state.imgSrcs} />
+      </div>
+    );
+  }
+}
+
+export default App;
+```
 
 
 
