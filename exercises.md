@@ -2044,15 +2044,140 @@ refactor the child Component to be a functional component
 <summary>Click here to view solutions for this section</summary>
 
 
+
 1.
+
+<sub>./src/Price.js</sub>
+```js
+import React from 'react';
+
+const Price = props=> (
+  <div>
+    <button onClick={()=> props.onUpdate(this.props.amount * 2)}>Double</button>
+    <button onClick={()=> props.onUpdate(this.props.amount * 3)}>Triple</button>
+    <div> $ { props.amount } </div>
+  </div>
+);
+
+export default Price;
+```
+
 
 2.
 
+<sub>./src/YearlyPayments.js</sub>
+```js
+import React from 'react';
+
+const YearlyPayments = props=> (
+  <div>
+    <button onClick={()=> this.props.onUpdate(props.amounts.map(a=> a * 2))}>Double</button>
+    <button onClick={()=> this.props.onUpdate(props.amounts.map(a=> a / 2))}>Halve</button>
+    
+    <ul>
+      <li> January: $ { props.amounts[0] } </li>
+      <li> February: $ { props.amounts[1] } </li>
+      <li> March: $ { props.amounts[2] } </li>
+      <li> April: $ { props.amounts[3] } </li>
+      <li> May: $ { props.amounts[4] } </li>
+      <li> June: $ { props.amounts[5] } </li>
+      <li> July: $ { props.amounts[6] } </li>
+      <li> August: $ { props.amounts[7] } </li>
+      <li> September: $ { props.amounts[8] } </li>
+      <li> October: $ { props.amounts[9] } </li>
+      <li> November: $ { props.amounts[10] } </li>
+      <li> December: $ { props.amounts[11] } </li>
+    </ul>
+  </div>
+);
+
+export default YearlyPayments;
+```
+
+
 3.
+
+<sub>./src/NameTag.js</sub>
+```js
+import React from 'react';
+
+const NameTag = props=> (
+  <div>
+    <div> {props.name.last}, {props.name.first} </div>
+    <button onClick={()=> props.onUpdate({ first: 'the amazing', last: 'spiderman' })}>who is peter parker?</button>
+  </div>
+);
+
+export default NameTag;
+```
+
+
+<sub>./src/App.js</sub>
+```js
+import React, { Component } from 'react';
+import './App.css';
+
+//...
+import NameTag from './NameTag';
+
+class App extends Component {
+  state = {
+    //...
+    name: { first: 'peter', last: 'parker' },
+  }
+
+  updateName = name=> this.setState({ name })
+  
+  //...
+
+  render(){
+    return (
+      <div>
+        //...
+        <NameTag name={this.state.name} onUpdate={this.updateName} />
+      </div>
+    );
+  }
+}
+
+export default App;
+```
+
+
 
 4.
 
+<sub>./src/TitledImage.js</sub>
+```js
+import React from 'react';
+
+const TitledImage = props=> (
+  <div>
+    <img src={props.imgSrc} onClick={props.onNext}/>
+    <h3>{props.title}</h3>
+  </div>
+);
+
+export default TitledImage;
+```
+
 5.
+
+<sub>./src/VersusImages.js</sub>
+```js
+import React from 'react';
+
+const VersusImages = props=> (
+  <div>
+    <img src={props.imgSrcs[0]}/>
+    vs.
+    <img src={props.imgSrcs[1]}/>
+    <button onClick={props.nextFight}>Show me the next fighters</button>
+  </div>
+);
+
+export default VersusImages;
+```
 
 
 </details>
