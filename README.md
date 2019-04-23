@@ -1,5 +1,5 @@
 <a name="thatop"></a>
-# mini react course
+# mini react course: *coin charts
 
 in 4 quick steps, we'll go from nothing to a cryptocurrency converter widget online!
 
