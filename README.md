@@ -1,6 +1,16 @@
+<a name="thatop"></a>
 # mini react course
 
 in 4 quick steps, we'll go from nothing to a cryptocurrency converter widget online!
+
+Agenda:
+
+- [step 1: make a component to pick currencies](#step1)
+- [step 2: gather data from an API](#step2)
+- [step 3: making a chart](#step3)
+- [step 4: publish to the web](#step4)
+- [step 5: menu layout](#step5)
+
 
 you can see a running example [here](https://nik-xcoin.herokuapp.com)
 
@@ -20,7 +30,8 @@ you now have the default create-react-app starter running in your browser and ca
 you are now also ready to work through the [exercises](/exercises.md)!
 
 
-## step 1, make a component to pick currencies
+<a name="step1"></a>
+## step 1: make a component to pick currencies
 
 `$ touch src/CoinPicker.js`
 
@@ -201,8 +212,8 @@ We're done the first step - we can pick our currencies. Next is to gather data f
 
 
 
-
-## step 2, gather data from an API
+<a name="step2"></a>
+## step 2: gather data from an API
 
 Whenever a user selects a new coin, we want to call an API to get historical conversion rates to display
 
@@ -311,7 +322,8 @@ We'll be rendering this data into a chart in the next step. For now let's just s
 good job! now we're ready for the last step
 
 
-## step 3, making a chart
+<a name="step3"></a>
+## step 3: making a chart
 
 React has a wonderful ecosystem, with many packages ready to solve mot of our problems!
 
@@ -490,7 +502,8 @@ Now go and be creative! Make a dropdown for selecting the timespan on the chart 
 
 
 
-## step 4, publish to the web
+<a name="step4"></a>
+## step 4: publish to the web
 
 If you've made an account on heroku.com, we can publish a free tier node to server out our app
 
@@ -547,7 +560,8 @@ and we'll need add a `run server` script in package.json
 now we can commit our code to git, push to github and connect out github to heroku - and heroku will handle the rest!
 
 
-## step 5, menu layout
+<a name="step5"></a>
+## step 5: menu layout
 
 our widget is really great, and we can see how much our [WINGS](https://www.wings.ai/) are worth now - but it doesn't really look like a web app.
 
