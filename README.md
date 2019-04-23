@@ -210,6 +210,11 @@ That'll have to do for now. Nothing fancy!
 We're done the first step - we can pick our currencies. Next is to gather data from an API
 
 
+---
+
+[back to the top](#thatop)
+
+---
 
 
 <a name="step2"></a>
@@ -320,6 +325,12 @@ We'll be rendering this data into a chart in the next step. For now let's just s
 ```
 
 good job! now we're ready for the last step
+
+---
+
+[back to the top](#thatop)
+
+---
 
 
 <a name="step3"></a>
@@ -502,6 +513,12 @@ Now go and be creative! Make a dropdown for selecting the timespan on the chart 
 
 
 
+---
+
+[back to the top](#thatop)
+
+---
+
 <a name="step4"></a>
 ## step 4: publish to the web
 
@@ -558,6 +575,14 @@ and we'll need add a `run server` script in package.json
 ```
 
 now we can commit our code to git, push to github and connect out github to heroku - and heroku will handle the rest!
+
+
+
+---
+
+[back to the top](#thatop)
+
+---
 
 
 <a name="step5"></a>
@@ -703,6 +728,13 @@ one last thing we should do is improve the styling on our chart to make our widg
 //...
 ```
 
+
+
+---
+
+[back to the top](#thatop)
+
+---
 
 
 ## conclusion
