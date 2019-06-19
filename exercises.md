@@ -841,29 +841,29 @@ export default App;
 ```
 
 
-4. `$ touch ./src/LastSeen.js`
+4. `$ touch ./src/ClickCounter.js`
 
-<sub>./src/LastSeen.js</sub>
+<sub>./src/ClickCounter.js</sub>
 ```js
 import React, { Component } from 'react';
 
-class LastSeen extends Component {
+class ClickCounter extends Component {
 
-  state = { lastClickTime: null }
+  state = { count: 0 }
 
-  recordClickTime = ()=> this.setState({ lastClickTime: (new Date()).toString() })
+  countClick = ()=> this.setState(state => ({ count: state.count+1 }) )
 
   render(){
     return (
       <div>
-        <div onClick={this.recordClickTime}>click me I dare you</div>
-        <div>{this.state.lastClickTime}</div>
+        <div onClick={this.countClick}>click me again</div>
+        <div>{this.state.count}</div>
       </div>
     );
   }
 }
 
-export default LastSeen;
+export default ClickCounter;
 ```
 
 <sub>./src/App.js</sub>
@@ -875,6 +875,7 @@ import BirdWord from './BirdWord';
 import Joke from './Joke';
 import Alarm from './Alarm';
 import LastSeen from './LastSeen';
+import ClickCounter from './ClickCounter';
 
 class App extends Component {
 
@@ -885,6 +886,7 @@ class App extends Component {
         <Joke />
         <Alarm />
         <LastSeen />
+        <ClickCounter />
       </div>
     );
   }
@@ -944,6 +946,7 @@ import BirdWord from './BirdWord';
 import Joke from './Joke';
 import Alarm from './Alarm';
 import LastSeen from './LastSeen';
+import ClickCounter from './ClickCounter';
 import DayNightToggle from './DayNightToggle';
 
 class App extends Component {
@@ -955,6 +958,7 @@ class App extends Component {
         <Joke />
         <Alarm />
         <LastSeen />
+        <ClickCounter />
         <DayNightToggle />
       </div>
     );
