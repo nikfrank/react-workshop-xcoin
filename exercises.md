@@ -125,15 +125,15 @@ once were inside the breakouts, we can write any [javascript expression](https:/
 
 let's practice rendering into a breakout a
 
-1. String primitive and String stored in a `const` ([read about const if you need to](https://www.w3schools.com/js/js_const.asp))
+1. String literal and String stored in a `const` ([read about const if you need to](https://www.w3schools.com/js/js_const.asp))
 
-2. Number primitive and Number stored in a `const`
+2. Number literal and Number stored in a `const`
 
-3. Array primitive and Array stored in a `const`
+3. Array literal and Array stored in a `const`
 
-4. Object primitive and Object stored in a `const`
+4. Object literal and Object stored in a `const`
 
-5. Date primitive and Date stored in a `const`
+5. Date literal and Date stored in a `const`
 
 
 ### solutions
